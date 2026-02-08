@@ -2,121 +2,149 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Centered Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>กล่องของขวัญลับ 🎁</title>
   <style>
-    * { box-sizing: border-box; }
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: #f5f0e6; /* พื้นหลังสีครีม */
-    }
-
-    .container {
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 24px;
+      align-items: center;
+      background: radial-gradient(circle at top, #ffdefb, #bf4aee 70%);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      color: #fff;
+      overflow: hidden;
     }
 
     .card {
-      width: 100%;
-      max-width: 520px;
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 32px 28px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 28px 22px 30px;
+      width: 320px;
       text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative;
     }
 
-    .card h1 {
-      margin: 0 0 12px;
-      font-size: 1.6rem;
-      letter-spacing: 0.3px;
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
     }
 
-    .card p {
-      margin: 0;
-      color: #555;
-      line-height: 1.6;
+    p {
+      margin: 0 0 16px;
+      opacity: 0.9;
+      font-size: 0.95rem;
     }
 
-    .title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: 0.3px;
+    .img-box {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 10px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff7ad9, #7afcff);
+      padding: 4px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px rgba(122,252,255,0.5);
     }
 
-    .message {
-      font-size: 1.05rem;
-      color: #444;
-      line-height: 1.7;
-      margin-top: 6px;
+    .img-box:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 0 30px rgba(255,122,217,0.9);
     }
 
-    .heart {
-      font-size: 40px;
-      margin: 10px 0 6px;
-      animation: beat 1.2s infinite;
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #000;
     }
 
-    @keyframes beat {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(1); }
-    }
-
-    /* เอฟเฟกต์เปลี่ยนหน้าแบบสมูท */
-    .fade {
-      animation: fadeSlide .45s ease both;
-    }
-
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(6px) scale(.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .card {
-      transition: box-shadow .3s ease, transform .2s ease;
-    }
-
-    .card:active {
-      transform: translateY(1px) scale(.995);
-      box-shadow: 0 6px 16px rgba(0,0,0,.12);
-    }
-      50% { transform: scale(1.15); }
-      100% { transform: scale(1); }
-    }
-
-    .badge {
-      display: inline-block;
+    .hint {
+      font-size: 0.75rem;
+      opacity: 0.7;
       margin-bottom: 10px;
-      padding: 6px 12px;
+    }
+
+    button {
+      margin-top: 12px;
+      padding: 10px 18px;
+      border: none;
       border-radius: 999px;
-      background: #f0eadc;
-      color: #6b5f46;
-      font-size: 0.85rem;
+      background: linear-gradient(135deg, #ff7ad9, #7afcff);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+    }
+
+    .secret {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.5);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .secret.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: fly 0.8s ease-out forwards;
+    }
+
+    @keyframes fly {
+      from {
+        opacity: 1;
+        transform: translate(0,0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(0);
+      }
     }
   </style>
 </head>
 <body>
-    <div class="container">
-      <div class="card">
-        <div class="title" id="title">ถึงคนพิเศษ 💌</div>
-        <img id="image" alt="ภาพประกอบ" style="width:140px;height:140px;object-fit:cover;border-radius:16px;box-shadow:0 6px 16px rgba(0,0,0,.12);margin:10px auto 6px;display:block" src="photo.gif" />
-        <div class="message" id="message">
-          เราอยากบอกว่า<br>
-          ชอบเธอมากจริง ๆ<br>
-          ขอบคุณที่เข้ามาในชีวิตนะ
-        </div>
-        <img id="nextBtn" src="gift.gif" alt="กดเพื่อไปหน้าถัดไป" style="margin-top:18px;width:64px;height:64px;cursor:pointer;display:block;margin-left:auto;margin-right:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,.15));transition:transform .15s ease" />
-        <div style="font-size:.9rem;color:#6b5f46;margin-top:6px">แตะน้องต่ายไปหน้าถัดไป </div>
-      </div>
+
+  <div class="card">
+    <h2 id="title"></h2>
+    <p id="message"></p>
+
+    <div class="img-box" id="imgBox">
+      <img id="image" src="" alt="gift"/>
+    </div>
+
+    <div class="hint" id="hint">กดที่รูปเพื่อเปิดข้อความลับ</div>
+
+    <div class="secret" id="secret"></div>
+
+    <button id="nextBtn">ของขวัญถัดไป ▶</button>
   </div>
 
   <script>
@@ -124,51 +152,92 @@
       {
         title: "ของขวัญชิ้นที่ 1 🎁",
         message: "เริ่มจากของขวัญเล็ก ๆ แต่ตั้งใจมาก",
-        image: "gift1.gif"
+        image: "gift1.gif",
+        secret: "ถ้าเธอรู้สึกเหนื่อย จำไว้นะว่าเธอไม่ได้เดินคนเดียว "
       },
       {
         title: "ของขวัญชิ้นที่ 2 🎁",
         message: "เผื่อวันที่เธออยากยิ้ม",
-        image: "gift2.gif"
+        image: "gift2.gif",
+        secret: "รอยยิ้มของเธอ คือสกิลลับที่ทำให้โลกดูดีขึ้นทันที ✨"
       },
       {
         title: "ของขวัญชิ้นที่ 3 🎁",
         message: "แทนความห่วงใยที่มีให้เสมอ",
-        image: "gift3.gif"
+        image: "gift3.gif",
+        secret: "บางทีเธออาจไม่รู้ แต่มีคนกำลังเอาใจช่วยเธออยู่ตลอดนะ 💪"
       },
       {
         title: "ดอกไม้สำหรับเธอ 🌸",
         message: "ขอให้วันของเธอสดใสเหมือนดอกไม้",
-        image: "flower.png"
+        image: "flower.png",
+        secret: null
       }
     ];
 
-    let i = -1;
+    let i = 0;
     const titleEl = document.getElementById('title');
     const msgEl = document.getElementById('message');
     const btn = document.getElementById('nextBtn');
     const imgEl = document.getElementById('image');
+    const imgBox = document.getElementById('imgBox');
+    const secretEl = document.getElementById('secret');
+    const hintEl = document.getElementById('hint');
 
-    btn.addEventListener('click', () => {
-      i = (i + 1) % pages.length;
-
-      // ใส่คลาสเอฟเฟกต์ก่อนอัปเดตข้อความ
-      titleEl.classList.remove('fade');
-      msgEl.classList.remove('fade');
-      void titleEl.offsetWidth; // รีเซ็ต animation
-
+    function renderPage() {
       titleEl.innerHTML = pages[i].title;
       msgEl.innerHTML = pages[i].message;
       imgEl.src = pages[i].image;
 
-      // ใส่เอฟเฟกต์ให้รูปด้วย
-      imgEl.classList.remove('fade');
-      void imgEl.offsetWidth;
-      imgEl.classList.add('fade');
+      // รีเซ็ตข้อความลับ
+      secretEl.classList.remove('show');
+      secretEl.innerHTML = "";
+      
+      if (pages[i].secret) {
+        hintEl.style.display = "block";
+        hintEl.innerText = "กดที่รูปเพื่อเปิดข้อความลับ";
+      } else {
+        hintEl.style.display = "none";
+      }
+    }
 
-      titleEl.classList.add('fade');
-      msgEl.classList.add('fade');
+    function sparkEffect(x, y) {
+      for (let k = 0; k < 10; k++) {
+        const s = document.createElement('div');
+        s.className = 'spark';
+        const dx = (Math.random() - 0.5) * 120 + 'px';
+        const dy = (Math.random() - 0.5) * 120 + 'px';
+        s.style.setProperty('--x', dx);
+        s.style.setProperty('--y', dy);
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 800);
+      }
+    }
+
+    imgBox.addEventListener('click', (e) => {
+      const current = pages[i];
+      if (!current.secret) return;
+
+      if (!secretEl.classList.contains('show')) {
+        secretEl.innerHTML = current.secret;
+        secretEl.classList.add('show');
+      } else {
+        secretEl.classList.remove('show');
+      }
+
+      sparkEffect(e.clientX, e.clientY);
     });
+
+    btn.addEventListener('click', () => {
+      i = (i + 1) % pages.length;
+      renderPage();
+    });
+
+    // เริ่มต้นหน้าแรก
+    renderPage();
   </script>
+
 </body>
 </html>
